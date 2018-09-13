@@ -20,7 +20,7 @@ class Map extends Component {
 			<div>
 			<CoffeMap
 				isMarkerShown
-  				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClnmi6Z3QxqK03n-h6vkgOp06Dc4jpOiw&v=3.exp&&libraries=geometry,drawing,places"
+  				googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&&libraries=geometry,drawing,places"
   				loadingElement={<div style={{ height: `100%` }} />}
   				containerElement={<div style={{ height: `600px` }} />}
   				mapElement={<div style={{ height: `100%`}} />}
