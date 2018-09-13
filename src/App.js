@@ -6,15 +6,23 @@ import Map from './Components/Map.js'
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App-container">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Coffee Shops in SanFrancisco</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Map/>
+        <main id="Main-container">
+          <section className="App-list">
+            <div>
+              <input type="text" id="coffeeSearch" placeholder="Search for coffee shops.."/>
+              
+            </div>
+          </section>
+          <section className="Map-container">
+            <Map/>
+          </section> 
+        </main>
+        <footer className="App-footer">
+        </footer>
       </div>
     );
   }
