@@ -12,8 +12,8 @@ class App extends Component {
         </header>
         <main id="Main-container">
           <section className="App-list">
-            <div>
-              <input type="text" id="coffeeSearch" placeholder="Search for coffee shops.."/>
+            <div className="search-list">
+              <input type="text" id="Coffee-search" placeholder="Search for coffee shops.."/>
               
             </div>
           </section>
@@ -21,7 +21,7 @@ class App extends Component {
             <Map/>
           </section> 
         </main>
-        <footer className="App-footer">
+        <footer className="App-footer">All rights reserved
         </footer>
       </div>
     );
