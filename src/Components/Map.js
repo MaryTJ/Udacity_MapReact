@@ -8,9 +8,9 @@ class Map extends Component {
 		const CoffeMap = withScriptjs(withGoogleMap((props) =>
 		<GoogleMap
 			defaultZoom={14}
-			defaultCenter={{lat: 37.7749, lng: -122.4194}}
+			defaultCenter={{lat: 37.787938, lng: -122.407506}}
 		>
-			{props.isMarkerShown && <Marker position={{ lat: 37.787994, lng:  -122.407437 }}
+			{props.isMarkerShown && <Marker position={{ lat: 37.787938, lng: -122.407506 }}
 			 />}
   		</GoogleMap>
   	))
@@ -20,7 +20,7 @@ class Map extends Component {
 			<div>
 			<CoffeMap
 				isMarkerShown
-  				googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&&libraries=geometry,drawing,places"
+  				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClnmi6Z3QxqK03n-h6vkgOp06Dc4jpOiw&v=3.exp&libraries=geometry,drawing,places"
   				loadingElement={<div style={{ height: `100%` }} />}
   				containerElement={<div style={{ height: `632px` }} />}
   				mapElement={<div style={{ height: `100%`}} />}
