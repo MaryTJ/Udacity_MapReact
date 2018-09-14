@@ -14,7 +14,7 @@ class App extends Component {
           <section className="App-list">
             <div className="search-list">
               <input type="text" id="Coffee-search" placeholder="Search for coffee shops.."/>
-              
+              <button type="button">Search</button>
             </div>
           </section>
           <section className="Map-container">
