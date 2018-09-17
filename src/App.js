@@ -12,25 +12,24 @@ constructor(props) {
 
   this.state = {
     venues :[],
-    venue_Ids: []
+    coffee_shops:[]
   }
 }
-
+  
   componentDidMount() {
     this.getVenueID()
   }
 
-  //Funtion to get venueIDs of coffee shops that are near Union Square, san francisco,CA
+  //Funtion to get coffee shops that are near Union Square, san francisco,CA
   getVenueID = () => {
           let v_ids = [] 
+          let c_shops = []
           VenueAPI.getAll().then((venues) => {
             this.setState({venues})
-            
-            venues.response.groups[0].items.forEach((item) => v_ids.push(item.venue.id));
-                
-            console.log(v_ids)
-            this.setState({venue_Ids:v_ids})
-            console.log(this.state.venue_Ids)
+            console.log(venues)          
+            //venues.response.groups[0].items.forEach((item) => v_ids.push(item.venue.id));
+            venues.response.groups[0].items.forEach((item) => c_shops.push(item.venue))
+            this.setState({coffee_shops:c_shops})
         }
         )
           

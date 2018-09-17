@@ -1,3 +1,5 @@
+//https://developer.foursquare.com/docs/api/venues/explore
+//This file calls the API of foursquare to get coffes places data
 const api = " https://api.foursquare.com"
 
 export const getAll = () =>
