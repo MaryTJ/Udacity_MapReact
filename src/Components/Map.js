@@ -7,12 +7,15 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from'react
 class Map extends Component {
 
 constructor(props) {
-    super(props)
-    this.state = {
+    super(props);
+
+     this.state = {
     selectedMarker:[],
     position : null
 }
+
 }
+
 	/*getMarkers = () => {
 		for(let i=0; i<this.props.coffee_shops.length; i++) {
           let lat = this.props.coffee_shops[i].location.lat
@@ -27,10 +30,11 @@ constructor(props) {
 	}
 */
 	getInfoWindow = (marker) => {
-		
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
-		console.log(this.state.selectedMarker)
+		console.log(this.state.selectedMarker.id)
+		this.props.getVenueDetail(this.state.selectedMarker.id)
+
 		
 	}
 
@@ -47,13 +51,17 @@ constructor(props) {
            key = {marker.id}
            position={{ lat: marker.location.lat, lng: marker.location.lng }}
            title = {marker.name}
-           onClick={e => {
-                this.getInfoWindow(marker);}}
+           onClick={e => {this.getInfoWindow(marker)}}
+           animation={1}
 
         />
       )) }
-		{this.state.position && <InfoWindow position={this.state.position}>
-					     <h1>{this.state.selectedMarker.name}</h1>
+		{this.state.position && <InfoWindow position={this.state.position} maxWidth={50}>
+					     <div>
+					     	<h2>{this.state.selectedMarker.name}</h2>
+					     	<p style={{fontSize: `14px`}}>{this.state.selectedMarker.location.formattedAddress}</p>
+					     	
+					     </div>
 					 </InfoWindow>
 				 }
 

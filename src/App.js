@@ -13,7 +13,8 @@ constructor(props) {
   this.state = {
     venues:[],
     coffee_shops:[],
-    markers: []
+    markers: [],
+    cshop_details:[]
   }
 }
   
@@ -52,6 +53,14 @@ constructor(props) {
           */
   }
 
+  getVenueDetail = (venueID) => {
+    console.log(venueID)
+    VenueAPI.getDetail(venueID).then((cshop_details) => {
+      this.setState({cshop_details})
+    })
+    console.log(this.state.cshop_details)
+  }
+
   render() {
     return (
       <div className="App-container">
@@ -68,7 +77,10 @@ constructor(props) {
           <section className="Map-container">
             <Map
             coffee_shops = {this.state.coffee_shops}
-            markers = {this.state.markers}/>
+            markers = {this.state.markers}
+            getVenueDetail = {this.getVenueDetail}
+            cshop_details = {this.state.cshop_details}
+            />
           </section> 
         </main>
         <footer className="App-footer">All rights reserved
