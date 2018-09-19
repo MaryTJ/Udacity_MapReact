@@ -3,6 +3,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from'react
 
 //Displaying mu;ltiple markers https://stackoverflow.com/questions/43859785/how-do-i-display-multiple-markers-with-react-google-maps
 //https://medium.com/@yelstin.fernandes/render-a-map-component-using-react-google-maps-5f7fb3e418bb
+// For help with pixelOffset https://github.com/tomchentw/react-google-maps/issues/333
 //pass markers array in return and then position of each marker
 class Map extends Component {
 
@@ -34,7 +35,7 @@ constructor(props) {
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		console.log(this.state.selectedMarker.id)
 		this.props.getVenueDetail(this.state.selectedMarker.id)
-
+		console.log(marker.Marker)
 		
 	}
 
@@ -49,14 +50,17 @@ constructor(props) {
 		{this.props.coffee_shops.map(marker => (
         <Marker 
            key = {marker.id}
-           position={{ lat: marker.location.lat, lng: marker.location.lng }}
+           position={{ lat: marker.location.lat , lng: marker.location.lng }}
            title = {marker.name}
            onClick={e => {this.getInfoWindow(marker)}}
-           animation={1}
+           animation={0}
 
         />
       )) }
-		{this.state.position && <InfoWindow position={this.state.position} maxWidth={50}>
+		{this.state.position && <InfoWindow 
+			position={this.state.position} 
+			options={{maxWidth:80,pixelOffset: new window.google.maps.Size(0,-40)}} 
+			>
 					     <div>
 					     	<h2>{this.state.selectedMarker.name}</h2>
 					     	<p style={{fontSize: `14px`}}>{this.state.selectedMarker.location.formattedAddress}</p>
@@ -76,7 +80,7 @@ constructor(props) {
 			<div >
 			<CoffeMap
 				isMarkerShown
-  				googleMapURL="https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places"
+  				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClnmi6Z3QxqK03n-h6vkgOp06Dc4jpOiw&v=3.exp&libraries=geometry,drawing,places"
   				loadingElement={<div style={{ height: `100%` }} />}
   				containerElement={<div style={{ height: `632px` }} />}
   				mapElement={<div style={{ height: `100%`}} />}
