@@ -12,7 +12,8 @@ constructor(props) {
 
      this.state = {
     selectedMarker:[],
-    position : null
+    position : null,
+    selectedMarkerDetail: null
 }
 
 }
@@ -34,8 +35,8 @@ constructor(props) {
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		console.log(this.state.selectedMarker.id)
-		this.props.getVenueDetail(this.state.selectedMarker.id)
-		console.log(marker.Marker)
+		//this.props.getVenueDetail(this.state.selectedMarker.id)
+		//this.props.getVenueDetail(this.state.selectedMarker.id)
 		
 	}
 
@@ -62,8 +63,11 @@ constructor(props) {
 			options={{maxWidth:80,pixelOffset: new window.google.maps.Size(0,-40)}} 
 			>
 					     <div>
-					     	<h2>{this.state.selectedMarker.name}</h2>
-					     	<p style={{fontSize: `14px`}}>{this.state.selectedMarker.location.formattedAddress}</p>
+					     	<h3>{this.state.selectedMarker.name}</h3>
+					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.address}</p>
+					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.city}</p>
+
+
 					     	
 					     </div>
 					 </InfoWindow>

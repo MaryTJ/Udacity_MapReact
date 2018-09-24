@@ -45,6 +45,10 @@
   border-width: 100pt;
 }*/
 
+li:hover {
+  cusor: pointer;
+}
+
 #Coffee-search {
   border-color: #D7D7D7;
   border-width: 10pt;
