@@ -104,7 +104,7 @@ constructor(props) {
             />
           </section> 
         </main>
-        <footer className="App-footer">All rights reserved
+        <footer className="App-footer">Powered by Foursquare - All rights reserved
         </footer>
       </div>
     );

@@ -35,26 +35,37 @@ constructor(props) {
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		console.log(this.state.selectedMarker.id)
-		//this.props.getVenueDetail(this.state.selectedMarker.id)
+		this.props.getVenueDetail(this.state.selectedMarker.id)
 		//this.props.getVenueDetail(this.state.selectedMarker.id)
 		
 	}
 
+	onMouseoverMarker(props, marker, e) {
+  		
+  		console.log(marker)
+  		console.log(props)
+  		console.log(e)
+	}
+
 	render () {
+
 		const CoffeMap = withScriptjs(withGoogleMap((props) =>
+		
 		<GoogleMap
 			defaultZoom={16}
 			defaultCenter={{lat: 37.787938, lng: -122.407506}}
 		>
 		
-		
+				
 		{this.props.coffee_shops.map(marker => (
         <Marker 
            key = {marker.id}
+           name={marker.name}
            position={{ lat: marker.location.lat , lng: marker.location.lng }}
            title = {marker.name}
            onClick={e => {this.getInfoWindow(marker)}}
            animation={0}
+           onMouseOver={this.onMouseoverMarker}
 
         />
       )) }
@@ -66,7 +77,8 @@ constructor(props) {
 					     	<h3>{this.state.selectedMarker.name}</h3>
 					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.address}</p>
 					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.city}</p>
-
+					     	<p style={{fontSize: `10px`}}>{this.props.cshop_details.response.venue.hours.status}</p>
+					     	<p style={{fontSize: `10px`}}>{this.props.cshop_details.response.venue.price.currency}</p>
 
 					     	
 					     </div>
@@ -83,7 +95,8 @@ constructor(props) {
 			
 			<div >
 			<CoffeMap
-				isMarkerShown
+				Marker
+				InfoWindow
   				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyClnmi6Z3QxqK03n-h6vkgOp06Dc4jpOiw&v=3.exp&libraries=geometry,drawing,places"
   				loadingElement={<div style={{ height: `100%` }} />}
   				containerElement={<div style={{ height: `632px` }} />}
