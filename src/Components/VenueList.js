@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
+
 
 
 //Component to display list of the selected venuews
@@ -8,7 +10,7 @@ class VenueList extends Component {
     super(props);
 
      this.state = {
-
+     		
      }
  }
 

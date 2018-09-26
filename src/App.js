@@ -4,6 +4,7 @@ import './App.css';
 import Map from './Components/Map.js'
 import VenueList from './Components/VenueList.js'
 import * as VenueAPI from './Components/VenueAPI.js'
+import PropTypes from 'prop-types'
 
 
 class App extends Component {
@@ -39,7 +40,9 @@ constructor(props) {
             //c_shops.forEach((shop) => details.push(shop))
             //this.setState({cshop_details:c_shops})
         }
-        )
+        ).catch((error)=>{
+          alert('Error while fetching coffe shop data from FoursquareAPI')
+        })
           /*
         let mark_array = []
         //console.log(c_shops)

@@ -35,7 +35,7 @@ constructor(props) {
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		console.log(this.state.selectedMarker.id)
-		this.props.getVenueDetail(this.state.selectedMarker.id)
+		//this.props.getVenueDetail(this.state.selectedMarker.id)
 		//this.props.getVenueDetail(this.state.selectedMarker.id)
 		
 	}
@@ -56,9 +56,10 @@ constructor(props) {
 			defaultCenter={{lat: 37.787938, lng: -122.407506}}
 		>
 		
-				
+		 
+		
 		{this.props.coffee_shops.map(marker => (
-        <Marker 
+		<Marker 
            key = {marker.id}
            name={marker.name}
            position={{ lat: marker.location.lat , lng: marker.location.lng }}
