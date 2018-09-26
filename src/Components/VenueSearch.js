@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
-import sortBy from 'sort-by'
+
 import escapeRegExp from 'escape-string-regexp'
 
 
@@ -11,16 +11,28 @@ class VenueSearch extends Component {
     super(props);
 
      this.state = {
-     		query = ''
+     		query : ''
      }
  }
 
+updateQuery = (query) => {
+		this.setState({ query:query.trim() })//.trim() })
+		if (this.state.query){
+			//this.props.searchShowBooks(query)
+		} 
+	}
 
 
 render () {
 	return (
 		<div className="search-list">
-              <input type="text" id="Coffee-search" placeholder="Search for coffee shops.."/>
+              <input 
+              	type="text" 
+              	id="Coffee-search" 
+              	placeholder="Search for coffee shops.."
+              	value = {this.state.query}
+					onChange = {(event) => this.updateQuery(event.target.value)}
+              />
               <button type="button">Search</button>
             </div>
 		)

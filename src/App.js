@@ -3,8 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import Map from './Components/Map.js'
 import VenueList from './Components/VenueList.js'
+import VenueSearch from './Components/VenueSearch.js'
 import * as VenueAPI from './Components/VenueAPI.js'
-import PropTypes from 'prop-types'
+
 
 
 class App extends Component {
@@ -88,9 +89,8 @@ constructor(props) {
         </header>
         <main id="Main-container">
           <section className="App-list">
-            <div className="search-list">
-              <input type="text" id="Coffee-search" placeholder="Search for coffee shops.."/>
-              <button type="button">Search</button>
+            <div>
+              <VenueSearch/>
             </div>
             <div>
               <VenueList

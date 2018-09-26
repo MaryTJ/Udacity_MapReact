@@ -13,7 +13,9 @@ constructor(props) {
      this.state = {
     selectedMarker:[],
     position : null,
-    selectedMarkerDetail: null
+    selectedMarkerDetail: null,
+    markerAnimation: 0,
+    hasLoaded: false
 }
 
 }
@@ -31,20 +33,45 @@ constructor(props) {
         }
 	}
 */
-	getInfoWindow = (marker) => {
+	componentDidMount() {
+
+
+    // after map load, comminucate animation has dropped complete so markers don't keep dropping
+    /*Timeout(() => {
+      this.setState({
+        hasLoaded: true
+      })
+
+    }, 1000)*/
+  }
+
+
+	getInfoWindow = (e,marker) => {
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		console.log(this.state.selectedMarker.id)
 		//this.props.getVenueDetail(this.state.selectedMarker.id)
 		//this.props.getVenueDetail(this.state.selectedMarker.id)
-		
+		//animation = window.google.maps.Animation.DROP
+		console.log("children")
+		console.log(e)
+		this.setState({markerAnimation:1})
 	}
 
 	onMouseoverMarker(props, marker, e) {
   		
-  		console.log(marker)
-  		console.log(props)
-  		console.log(e)
+	}
+
+	animateMarker = (e,marker) => {
+		/*
+		if (this.state.selectedMarker.id === marker.id)
+      		return 4 // bobble
+      	else
+      		return 0
+      	*/
+      	console.log("selectedMarker")
+      	console.log(this.state.selectedMarker.id )
+
 	}
 
 	render () {
@@ -64,8 +91,8 @@ constructor(props) {
            name={marker.name}
            position={{ lat: marker.location.lat , lng: marker.location.lng }}
            title = {marker.name}
-           onClick={e => {this.getInfoWindow(marker)}}
-           animation={0}
+           onClick= {(e) => {this.getInfoWindow(e,marker)}}
+           animation= {this.state.selectedMarker.id === marker.id? 4: 0}
            onMouseOver={this.onMouseoverMarker}
 
         />
@@ -78,9 +105,7 @@ constructor(props) {
 					     	<h3>{this.state.selectedMarker.name}</h3>
 					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.address}</p>
 					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.city}</p>
-					     	<p style={{fontSize: `10px`}}>{this.props.cshop_details.response.venue.hours.status}</p>
-					     	<p style={{fontSize: `10px`}}>{this.props.cshop_details.response.venue.price.currency}</p>
-
+					     	
 					     	
 					     </div>
 					 </InfoWindow>
