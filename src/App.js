@@ -31,11 +31,11 @@ constructor(props) {
           let details = []
           VenueAPI.getAll().then((venues) => {
             this.setState({venues})
-            console.log(venues)          
+          //  console.log(venues)          
             //venues.response.groups[0].items.forEach((item) => v_ids.push(item.venue.id));
             venues.response.groups[0].items.forEach((item) => c_shops.push(item.venue))
             this.setState({coffee_shops:c_shops})
-            console.log(this.state.coffee_shops)
+        //    console.log(this.state.coffee_shops)
 
             
             //c_shops.forEach((shop) => details.push(shop))
@@ -78,7 +78,7 @@ constructor(props) {
     VenueAPI.getDetail(venueID).then((cshop_details) => {
       this.setState({cshop_details})
     })
-    console.log(this.state.cshop_details)
+    //console.log(this.state.cshop_details)
   }
 
   render() {

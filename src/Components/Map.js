@@ -13,9 +13,8 @@ constructor(props) {
      this.state = {
     selectedMarker:[],
     position : null,
-    selectedMarkerDetail: null,
-    markerAnimation: 0,
-    hasLoaded: false
+    selectedMarkerDetail: null
+    
 }
 
 }
@@ -50,12 +49,9 @@ constructor(props) {
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		console.log(this.state.selectedMarker.id)
+		this.props.getVenueDetail(this.state.selectedMarker.id)
 		//this.props.getVenueDetail(this.state.selectedMarker.id)
-		//this.props.getVenueDetail(this.state.selectedMarker.id)
-		//animation = window.google.maps.Animation.DROP
-		console.log("children")
-		console.log(e)
-		this.setState({markerAnimation:1})
+		
 	}
 
 	onMouseoverMarker(props, marker, e) {
@@ -105,7 +101,9 @@ constructor(props) {
 					     	<h3>{this.state.selectedMarker.name}</h3>
 					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.address}</p>
 					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.city}</p>
-					     	
+					     	<p style={{fontSize: `10px`}}>Hours: {typeof(this.props.cshop_details.response)!= 'undefined'?this.props.cshop_details.response.venue.hours.status: 'No detail'}</p>
+					     	<p style={{fontSize: `10px`}}>Price: {typeof(this.props.cshop_details.response)!= 'undefined'?this.props.cshop_details.response.venue.price.currency: 'No detail'}</p>
+
 					     	
 					     </div>
 					 </InfoWindow>
