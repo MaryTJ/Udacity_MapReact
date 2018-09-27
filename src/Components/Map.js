@@ -70,6 +70,40 @@ constructor(props) {
 
 	}
 
+	
+	getSearchedMarkers = (smarker,markerid) => {
+		console.log (smarker)
+		console.log (markerid)
+		if (this.props.searched_markers.length > 0) {
+			if (smarker.id === markerid)
+				return true
+			else
+				return false
+		}
+		else 
+			return true
+	}
+
+	getMarkersVisibility = (markerid) => {
+		let marker_visible = false
+		console.log (this.props.searched_markers)
+		console.log (markerid)
+		if (this.props.searched_markers.length > 0) {
+			for (let i = 0; i < this.props.searched_markers.length; i++)
+			//this.props.searched_markers.filter(smarker => { if (smarker.id === markerid) {console.log(smarker.name)} else {return false}})
+				if (this.props.searched_markers[i].id === markerid) 
+					{marker_visible = true;
+						break} 
+				else {marker_visible = false}
+		}
+		else 
+			{marker_visible = true}
+
+		return marker_visible
+		
+	}
+
+
 	render () {
 
 		const CoffeMap = withScriptjs(withGoogleMap((props) =>
@@ -90,7 +124,7 @@ constructor(props) {
            onClick= {e => {this.getInfoWindow(marker)}}
            animation= {this.state.selectedMarker.id === marker.id? 4: 0}
            onMouseOver={this.onMouseoverMarker}
-           visible={true}
+           visible={this.getMarkersVisibility(marker.id)}
 
         />
       )) }

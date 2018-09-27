@@ -26,17 +26,8 @@ getMarkerInfo (marker) {
 
 render () {
 	return (
-		<ul className = 'venue-list'>
-		{this.props.coffee_shops.map(marker =>
-			<li 
-			key = {marker.id}
-			onClick={e => {this.getMarkerInfo(marker)}}
-			>
-			{marker.name}
-			</li>
-			)
-			}
-		</ul>
+		console.log(this.props.state.searched_markers)
+
 		)
 }
 

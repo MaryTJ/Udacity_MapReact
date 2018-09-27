@@ -62,7 +62,7 @@ constructor(props) {
     console.log('coffee')
     console.log(this.state.coffee_shops)
     
-    if (query != '' || query!=null) {
+    if (query !== '' || query!==null) {
       this.setState({searched_markers:this.state.coffee_shops.filter((shop) => match.test(shop.name))})
       
       //console.log(this.state.searched_markers)
@@ -94,6 +94,7 @@ constructor(props) {
             searched_markers = {this.state.searched_markers}
             getVenueDetail = {this.getVenueDetail}
             cshop_details = {this.state.cshop_details}
+            searched_markers = {this.state.searched_markers}
             />
           </section> 
         </main>
