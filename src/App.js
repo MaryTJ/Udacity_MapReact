@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import PropTypes from 'prop-types'
+import escapeRegExp from 'escape-string-regexp'
 import './App.css';
 import Map from './Components/Map.js'
 import VenueList from './Components/VenueList.js'
 import VenueSearch from './Components/VenueSearch.js'
 import * as VenueAPI from './Components/VenueAPI.js'
+
 
 
 
@@ -16,7 +19,7 @@ constructor(props) {
   this.state = {
     venues:[],
     coffee_shops:[],
-    markers: [],
+    searched_markers: [],
     cshop_details:[]
   }
 }
@@ -31,45 +34,16 @@ constructor(props) {
           let details = []
           VenueAPI.getAll().then((venues) => {
             this.setState({venues})
-          //  console.log(venues)          
-            //venues.response.groups[0].items.forEach((item) => v_ids.push(item.venue.id));
             venues.response.groups[0].items.forEach((item) => c_shops.push(item.venue))
             this.setState({coffee_shops:c_shops})
-        //    console.log(this.state.coffee_shops)
-
-            
-            //c_shops.forEach((shop) => details.push(shop))
-            //this.setState({cshop_details:c_shops})
+        
         }
         ).catch((error)=>{
           alert('Error while fetching coffe shop data from FoursquareAPI')
         })
-          /*
-        let mark_array = []
-        //console.log(c_shops)
-        for(let i=0; i<c_shops.length; i++) {
-          let lat = c_shops[i].location.lat
-          let lng = c_shops[i].location.lng
-          let position = {lat, lng }
-          let title = c_shops[i].name
-
-          let marker = new window.google.maps.Marker({position: position,title: title})
-          mark_array.push(marker)
-
-        }
-        console.log(mark_array)
-        this.setState({markers:mark_array})
-        console.log(this.state.markers)
-          */
-
-          /*c_shops.forEach((shop) => 
-              VenueAPI.getDetail(shop.id).then((cshop_details) => {
-              this.setState({cshop_details})
-            })
-
-            
-              )
-            */
+   
+          this.setState({searched_markers:c_shops})
+          
   }
 
   getVenueDetail = (venueID) => {
@@ -81,6 +55,23 @@ constructor(props) {
     //console.log(this.state.cshop_details)
   }
 
+  handleSearch = (query) => {
+    console.log(query)
+    let filterresult = []
+    const match = new RegExp(escapeRegExp(query),'i')
+    console.log('coffee')
+    console.log(this.state.coffee_shops)
+    
+    if (query != '' || query!=null) {
+      this.setState({searched_markers:this.state.coffee_shops.filter((shop) => match.test(shop.name))})
+      
+      //console.log(this.state.searched_markers)
+    }
+    else
+      this.setState({searched_markers : this.state.coffee_shops})
+  
+  }
+
   render() {
     return (
       <div className="App-container">
@@ -90,18 +81,17 @@ constructor(props) {
         <main id="Main-container">
           <section className="App-list">
             <div>
-              <VenueSearch/>
-            </div>
-            <div>
-              <VenueList
-                coffee_shops = {this.state.coffee_shops}
+              <VenueSearch
+                searched_markers = {this.state.searched_markers}
+                handleSearch = {this.handleSearch}
               />
             </div>
+            
           </section>
           <section className="Map-container">
             <Map
             coffee_shops = {this.state.coffee_shops}
-            markers = {this.state.markers}
+            searched_markers = {this.state.searched_markers}
             getVenueDetail = {this.getVenueDetail}
             cshop_details = {this.state.cshop_details}
             />

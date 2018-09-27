@@ -10,12 +10,18 @@ class VenueList extends Component {
     super(props);
 
      this.state = {
-     		
+
      }
  }
 
+static propTypes = {
+		searched_markers: PropTypes.array,
+	}
+
 getMarkerInfo (marker) {
-	console.log(marker.name)
+	
+	this.setState({searched_markers:marker})
+	console.log(this.props.state.searched_markers)
 }
 
 render () {

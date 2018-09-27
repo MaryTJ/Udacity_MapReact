@@ -22,19 +22,47 @@ updateQuery = (query) => {
 		} 
 	}
 
+getMarkerInfo (marker) {
+	
+	this.setState({searched_markers:marker})
+	console.log(this.props.state.searched_markers)
+}
+
+
 
 render () {
+	
+		
 	return (
+		<div>
 		<div className="search-list">
               <input 
               	type="text" 
               	id="Coffee-search" 
               	placeholder="Search for coffee shops.."
-              	value = {this.state.query}
-					onChange = {(event) => this.updateQuery(event.target.value)}
+              	
+				onChange = {(event) => this.props.handleSearch(event.target.value)}
               />
               <button type="button">Search</button>
-            </div>
+         </div>
+         
+         
+         <ul className = 'venue-list'>
+		{this.props.searched_markers.map(marker =>
+			<li 
+			key = {marker.id}
+			onClick={e => {this.getMarkerInfo(marker)}}
+			>
+			<div key = {marker.id}>
+			{marker.name}
+			</div>
+			</li>
+			)
+			}
+		</ul>
+         </div>
+
+
 		)
 }
 

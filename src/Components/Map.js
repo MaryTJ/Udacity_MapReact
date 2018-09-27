@@ -45,7 +45,7 @@ constructor(props) {
   }
 
 
-	getInfoWindow = (e,marker) => {
+	getInfoWindow = (marker) => {
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		console.log(this.state.selectedMarker.id)
@@ -87,9 +87,10 @@ constructor(props) {
            name={marker.name}
            position={{ lat: marker.location.lat , lng: marker.location.lng }}
            title = {marker.name}
-           onClick= {(e) => {this.getInfoWindow(e,marker)}}
+           onClick= {e => {this.getInfoWindow(marker)}}
            animation= {this.state.selectedMarker.id === marker.id? 4: 0}
            onMouseOver={this.onMouseoverMarker}
+           visible={true}
 
         />
       )) }
