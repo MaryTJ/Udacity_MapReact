@@ -23,9 +23,10 @@ updateQuery = (query) => {
 	}
 
 selectedMarkerInfo (marker) {
-	
-	
+	this.setState({ clicked_marker:marker },() => console.log(this.state.clicked_marker))
 	console.log(marker.name)
+	//this.props.setClickedMarker(marker)
+	console.log(this.props)
 }
 
 
@@ -51,7 +52,7 @@ render () {
 		{this.props.searched_markers.map(marker =>
 			<li 
 			key = {marker.id}
-			onClick={e => {this.selectedMarkerInfo(marker)}}
+			onClick={(event) => {this.props.setClickedMarker(marker)}}
 			>
 			<div key = {marker.id}>
 			{marker.name}

@@ -32,23 +32,14 @@ constructor(props) {
         }
 	}
 */
-	componentDidMount() {
-
-
-    // after map load, comminucate animation has dropped complete so markers don't keep dropping
-    /*Timeout(() => {
-      this.setState({
-        hasLoaded: true
-      })
-
-    }, 1000)*/
-  }
+	
 
 
 	getInfoWindow = (marker) => {
+
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
-		console.log(this.state.selectedMarker.id)
+		//console.log(this.state.selectedMarker.id)
 		this.props.getVenueDetail(this.state.selectedMarker.id)
 		//this.props.getVenueDetail(this.state.selectedMarker.id)
 		
@@ -58,13 +49,9 @@ constructor(props) {
   		
 	}
 
-	animateMarker = (e,marker) => {
-		/*
-		if (this.state.selectedMarker.id === marker.id)
-      		return 4 // bobble
-      	else
-      		return 0
-      	*/
+	animateMarker = (marker) => {
+		
+
       	console.log("selectedMarker")
       	console.log(this.state.selectedMarker.id )
 
@@ -86,8 +73,11 @@ constructor(props) {
 
 	getMarkersVisibility = (markerid) => {
 		let marker_visible = false
-		console.log (this.props.searched_markers)
-		console.log (markerid)
+
+		//console.log (markerid)
+		
+		
+
 		if (this.props.searched_markers.length > 0) {
 			for (let i = 0; i < this.props.searched_markers.length; i++)
 			//this.props.searched_markers.filter(smarker => { if (smarker.id === markerid) {console.log(smarker.name)} else {return false}})

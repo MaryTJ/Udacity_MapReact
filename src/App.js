@@ -20,7 +20,8 @@ constructor(props) {
     venues:[],
     coffee_shops:[],
     searched_markers: [],
-    cshop_details:[]
+    cshop_details:[],
+    clicked_marker:[]
   }
 }
   
@@ -72,6 +73,13 @@ constructor(props) {
   
   }
 
+  setClickedMarker = (marker) => {
+    
+    this.setState({ clicked_marker:marker },() => console.log(this.state.clicked_marker))
+    //console.log("clicked_marker")
+    //console.log(this.state.clicked_marker)
+  }
+
   render() {
     return (
       <div className="App-container">
@@ -84,19 +92,21 @@ constructor(props) {
               <VenueSearch
                 searched_markers = {this.state.searched_markers}
                 handleSearch = {this.handleSearch}
+                clicked_marker = {this.state.clicked_marker}
+                setClickedMarker = {this.setClickedMarker}
               />
             </div>
-            
           </section>
-          <section className="Map-container">
-            <Map
-            coffee_shops = {this.state.coffee_shops}
-            searched_markers = {this.state.searched_markers}
-            getVenueDetail = {this.getVenueDetail}
-            cshop_details = {this.state.cshop_details}
-            searched_markers = {this.state.searched_markers}
-            />
-          </section> 
+            <section className="Map-container">
+              <Map
+              coffee_shops = {this.state.coffee_shops}
+              searched_markers = {this.state.searched_markers}
+              getVenueDetail = {this.getVenueDetail}
+              cshop_details = {this.state.cshop_details}
+              searched_markers = {this.state.searched_markers}
+              clicked_marker = {this.state.clicked_marker}
+              />
+            </section> 
         </main>
         <footer className="App-footer">Powered by Foursquare - All rights reserved
         </footer>
