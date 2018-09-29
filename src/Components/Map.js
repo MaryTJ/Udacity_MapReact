@@ -40,15 +40,12 @@ constructor(props) {
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		//console.log(this.state.selectedMarker.id)
-		this.props.getVenueDetail(this.state.selectedMarker.id)
+		//this.props.getVenueDetail(this.state.selectedMarker.id)
 		//this.props.getVenueDetail(this.state.selectedMarker.id)
 		
 	}
 
-	onMouseoverMarker(props, marker, e) {
-  		
-	}
-
+	
 	animateMarker = (marker) => {
 		
 
@@ -93,6 +90,20 @@ constructor(props) {
 		
 	}
 
+	getAnimation = (marker_id) => {
+		//if (this.state.selectedMarker.id === marker_id? 4: 0
+		
+
+		if (this.props.clicked_marker.id === marker_id)
+			{//this.setState({selectedMarker:this.props.clicked_marker})
+			//this.setState({position: {lat:this.props.clicked_marker.location.lat,lng:this.props.clicked_marker.location.lng}})
+			return 4}
+		if (this.state.selectedMarker.id === marker_id)
+			{return 4}
+		else 
+			{return 0}
+	}
+
 
 	render () {
 
@@ -112,7 +123,7 @@ constructor(props) {
            position={{ lat: marker.location.lat , lng: marker.location.lng }}
            title = {marker.name}
            onClick= {e => {this.getInfoWindow(marker)}}
-           animation= {this.state.selectedMarker.id === marker.id? 4: 0}
+           animation= {this.getAnimation(marker.id)}
            onMouseOver={this.onMouseoverMarker}
            visible={this.getMarkersVisibility(marker.id)}
 
