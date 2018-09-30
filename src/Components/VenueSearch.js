@@ -56,6 +56,7 @@ render () {
 			>
 			<div key = {marker.id}>
 			{marker.name}
+			
 			</div>
 			</li>
 			)

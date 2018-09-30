@@ -33,10 +33,15 @@ constructor(props) {
 	}
 */
 	
-
+	 componentDidUpdate(){
+        
+        //document.querySelectorAll('li').forEach( li => 
+        //    li.addEventListener('click', () => this.setState({selectedMarker:{},clicked_marker:{}}))
+        //)
+    }
 
 	getInfoWindow = (marker) => {
-
+		
 		this.setState({selectedMarker:marker})
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		//console.log(this.state.selectedMarker.id)
@@ -90,12 +95,13 @@ constructor(props) {
 		
 	}
 
-	getAnimation = (marker_id) => {
+	/*getAnimation = (marker_id) => {
 		//if (this.state.selectedMarker.id === marker_id? 4: 0
 		
 
 		if (this.props.clicked_marker.id === marker_id)
-			{//this.setState({selectedMarker:this.props.clicked_marker},
+			{this.getInfoWindow(marker_id)
+			//this.setState({selectedMarker:this.props.clicked_marker},
 			//console.log(this.props))
 			//this.setState({position: {lat:this.props.clicked_marker.location.lat, lng:this.props.clicked_marker.location.lng}},console.log(this.position))
 			return 4}
@@ -104,7 +110,23 @@ constructor(props) {
 		else 
 			{return 0}
 	}
+*/
 
+getAnimation = (marker) => {
+		//if (this.state.selectedMarker.id === marker_id? 4: 0
+		
+
+		if (this.props.clicked_marker.id === marker.id)
+			{//this.getInfoWindow(marker)
+			//this.setState({selectedMarker:this.props.clicked_marker},
+			//console.log(this.props))
+			//this.setState({position: {lat:this.props.clicked_marker.location.lat, lng:this.props.clicked_marker.location.lng}},console.log(this.position))
+			return 4}
+		if (this.state.selectedMarker.id === marker.id)
+			{return 4}
+		else 
+			{return 0}
+	}
 
 	render () {
 
@@ -124,12 +146,15 @@ constructor(props) {
            position={{ lat: marker.location.lat , lng: marker.location.lng }}
            title = {marker.name}
            onClick= {e => {this.getInfoWindow(marker)}}
-           animation= {this.getAnimation(marker.id)}
+           animation= {this.getAnimation(marker)}
            onMouseOver={this.onMouseoverMarker}
            visible={this.getMarkersVisibility(marker.id)}
 
         />
       )) }
+
+       
+		
 		{this.state.position && <InfoWindow 
 			position={this.state.position} 
 			options={{maxWidth:80,pixelOffset: new window.google.maps.Size(0,-40)}} 
@@ -145,19 +170,9 @@ constructor(props) {
 					     </div>
 					 </InfoWindow>
 				 }
+		 
 
-			{this.state.clicked_marker && <InfoWindow 
-			 
-			options={{maxWidth:80,pixelOffset: new window.google.maps.Size(0,-40)}} 
-			>
-					     <div>
-					     	<h3>{this.state.clicked_marker.name}</h3>
-					     	<p style={{fontSize: `10px`}}>{this.state.clicked_marker.location.address}</p>
-					     	<p style={{fontSize: `10px`}}>{this.state.clicked_marker.location.city}</p>
-						</div>
-			</InfoWindow>
-			}
-			
+						
   		</GoogleMap>
   	))
 
