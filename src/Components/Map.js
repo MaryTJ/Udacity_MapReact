@@ -95,8 +95,9 @@ constructor(props) {
 		
 
 		if (this.props.clicked_marker.id === marker_id)
-			{//this.setState({selectedMarker:this.props.clicked_marker})
-			//this.setState({position: {lat:this.props.clicked_marker.location.lat,lng:this.props.clicked_marker.location.lng}})
+			{//this.setState({selectedMarker:this.props.clicked_marker},
+			//console.log(this.props))
+			//this.setState({position: {lat:this.props.clicked_marker.location.lat, lng:this.props.clicked_marker.location.lng}},console.log(this.position))
 			return 4}
 		if (this.state.selectedMarker.id === marker_id)
 			{return 4}
@@ -145,8 +146,17 @@ constructor(props) {
 					 </InfoWindow>
 				 }
 
-		
-
+			{this.state.clicked_marker && <InfoWindow 
+			 
+			options={{maxWidth:80,pixelOffset: new window.google.maps.Size(0,-40)}} 
+			>
+					     <div>
+					     	<h3>{this.state.clicked_marker.name}</h3>
+					     	<p style={{fontSize: `10px`}}>{this.state.clicked_marker.location.address}</p>
+					     	<p style={{fontSize: `10px`}}>{this.state.clicked_marker.location.city}</p>
+						</div>
+			</InfoWindow>
+			}
 			
   		</GoogleMap>
   	))
