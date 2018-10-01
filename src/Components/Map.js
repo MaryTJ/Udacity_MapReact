@@ -34,25 +34,21 @@ constructor(props) {
 */
 	
 	 componentDidUpdate(prevProps){
-	 	console.log("update")
+	 	//console.log("update")
 	 	
-	 	console.log(this.props.clicked_marker)
+	 	//console.log(this.props.clicked_marker)
         if (this.props.clicked_marker!=prevProps.clicked_marker){
-        	console.log("updating")
-        	//this.setState({selectedMarker:this.props.clicked_marker})
         	this.getInfoWindow(this.props.clicked_marker)
         	this.setState({clicked_marker:[]})
-
-        //document.querySelectorAll('li').forEach( li => 
-        //    li.addEventListener('click', () => this.setState({selectedMarker:{},clicked_marker:{}}))
-        //)
+        
         }
     }
 
 	getInfoWindow = (marker) => {
 		
-		this.setState({selectedMarker:marker})
+		this.setState({selectedMarker:marker},() => this.props.getVenueDetail(this.state.selectedMarker.id))
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
+		//console.log(this.state.selectedMarker.id)
 		//console.log(this.state.selectedMarker.id)
 		//this.props.getVenueDetail(this.state.selectedMarker.id)
 		//this.props.getVenueDetail(this.state.selectedMarker.id)
@@ -70,8 +66,8 @@ constructor(props) {
 
 	
 	getSearchedMarkers = (smarker,markerid) => {
-		console.log (smarker)
-		console.log (markerid)
+		//console.log (smarker)
+		//console.log (markerid)
 		if (this.props.searched_markers.length > 0) {
 			if (smarker.id === markerid)
 				return true
@@ -125,13 +121,13 @@ getAnimation = (marker) => {
 		//if (this.state.selectedMarker.id === marker_id? 4: 0
 		
 
-		if (this.props.clicked_marker.id === marker.id)
-			{window.google.maps.event.trigger(marker, 'click');
+		//if (this.props.clicked_marker.id === marker.id)
+		//	{window.google.maps.event.trigger(marker, 'click');
 			//this.getInfoWindow(marker)
 			//this.setState({selectedMarker:this.props.clicked_marker},
 			//console.log(this.props))
 			//this.setState({position: {lat:this.props.clicked_marker.location.lat, lng:this.props.clicked_marker.location.lng}},console.log(this.position))
-			return 4}
+		//	return 4}
 		if (this.state.selectedMarker.id === marker.id)
 			{return 4}
 		else 

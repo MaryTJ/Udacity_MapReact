@@ -52,8 +52,10 @@ constructor(props) {
     console.log(venueID)
     VenueAPI.getDetail(venueID).then((cshop_details) => {
       this.setState({cshop_details})
-    })
-    //console.log(this.state.cshop_details)
+    }).catch((error)=>{
+          alert('Error while fetching coffe shop details from FoursquareAPI')
+        })
+    console.log(this.state.cshop_details)
   }
 
   handleSearch = (query) => {
