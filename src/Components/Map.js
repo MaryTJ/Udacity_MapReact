@@ -33,11 +33,20 @@ constructor(props) {
 	}
 */
 	
-	 componentDidUpdate(){
-        
+	 componentDidUpdate(prevProps){
+	 	console.log("update")
+	 	
+	 	console.log(this.props.clicked_marker)
+        if (this.props.clicked_marker!=prevProps.clicked_marker){
+        	console.log("updating")
+        	//this.setState({selectedMarker:this.props.clicked_marker})
+        	this.getInfoWindow(this.props.clicked_marker)
+        	this.setState({clicked_marker:[]})
+
         //document.querySelectorAll('li').forEach( li => 
         //    li.addEventListener('click', () => this.setState({selectedMarker:{},clicked_marker:{}}))
         //)
+        }
     }
 
 	getInfoWindow = (marker) => {
@@ -117,7 +126,8 @@ getAnimation = (marker) => {
 		
 
 		if (this.props.clicked_marker.id === marker.id)
-			{//this.getInfoWindow(marker)
+			{window.google.maps.event.trigger(marker, 'click');
+			//this.getInfoWindow(marker)
 			//this.setState({selectedMarker:this.props.clicked_marker},
 			//console.log(this.props))
 			//this.setState({position: {lat:this.props.clicked_marker.location.lat, lng:this.props.clicked_marker.location.lng}},console.log(this.position))
