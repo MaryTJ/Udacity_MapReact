@@ -31,7 +31,7 @@ Service work is available in production mode. Use
 ```serve -s build```
 
 ##ThirdParty API
-The project uses google map API to render map. The project is integrated with FoursquareAPI, which is used to search coffee shops and also fetch their detailed information
+The project uses google map API to render map. The project is integrated with FoursquareAPI, which is used to search coffee shops and also fetch their detailed information. The project also utilizes react-google-maps library.
 
 ## Credits
 The project is developed by using lectures and help from the following websites
