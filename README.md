@@ -5,6 +5,8 @@
 * [Overview](#overview)
 * [How to access webpage](#HowToAccessWebpage)
 * [Features](#features)
+* [Service Worker](#ServiceWorker)
+* [ThirdParty API](#ThirdPartyAPI)
 * [Credits](#credits)
 * [Author](#author)
 
@@ -27,6 +29,9 @@ The webpage contains a responsive design and works on different viewports. The w
 Service work is available in production mode. Use 
 ```npm run build```
 ```serve -s build```
+
+##ThirdParty API
+The project uses google map API to render map. The project is integrated with FoursquareAPI, which is used to search coffee shops and also fetch their detailed information
 
 ## Credits
 The project is developed by using lectures and help from the following websites
