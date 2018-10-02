@@ -45,8 +45,8 @@ constructor(props) {
     }
 
 	getInfoWindow = (marker) => {
-		
-		this.setState({selectedMarker:marker},() => this.props.getVenueDetail(this.state.selectedMarker.id))
+		//commenting out getvenue detail to not exhaust the limit
+		this.setState({selectedMarker:marker})//,() => this.props.getVenueDetail(this.state.selectedMarker.id))
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
 		//console.log(this.state.selectedMarker.id)
 		//console.log(this.state.selectedMarker.id)

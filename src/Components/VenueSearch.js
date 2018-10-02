@@ -44,7 +44,7 @@ render () {
               	
 				onChange = {(event) => this.props.handleSearch(event.target.value)}
               />
-              <button type="button">Search</button>
+              
          </div>
          
          
@@ -56,8 +56,9 @@ render () {
 			>
 			<div key = {marker.id}>
 			{marker.name}
-			
+
 			</div>
+			
 			</li>
 			)
 			}

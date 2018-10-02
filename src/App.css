@@ -28,14 +28,15 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 83vh;
+  height: 90vh;
+  background-color: #F6F6F6;
 }
 
 .App-list {
-  width: 25%; 
+  width: 30%; 
   height: 100%; 
   background-color: #F6F6F6;
-  
+  text-align: left;
 }
 /*
 .search-list {
@@ -46,7 +47,7 @@
 }*/
 
 li:hover {
-  cusor: pointer;
+  cursor: pointer;
 }
 
 #Coffee-search {
@@ -57,19 +58,78 @@ li:hover {
 }
 
 .Map-container {
-  width:75%;  
-  height: 100%;
+  width:70%;  
+  height: 110%;
 }
 
 .App-footer {
   background-color: #ffeee6;
-  height: 20px;
+  /*height: 20px;
   padding: 20px;
   color: black;
-  position: relative;
+  position: relative;*/
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
   font-size: 1.5em;
-
+  
   
 }
 
 
+@media only screen and (min-width: 700px) and (max-width: 1000px) {
+  
+  
+}
+
+@media only screen and (min-width: 387px) and (max-width: 699px) {
+  
+.App-header {
+    padding: 10px;
+  }
+
+  .App-footer {
+   
+    font-size: 1em;
+  }
+
+  .App-title {
+    font-size: 1em;
+  }
+
+  .venue-list {
+  font-size: 0.5em; 
+  text-align: left;
+  }
+  
+  }
+
+@media only screen and (max-width: 386px) {
+  .App-header {
+    padding: 10px;
+  }
+
+  .App-footer {
+   
+    font-size: .75em;
+  }
+
+  .App-title {
+    font-size: 0.75em;
+  }
+
+  #Coffee-search {
+    font-size: 0.5em;
+    width: 75%;
+    height: 10px;
+}
+
+.venue-list {
+  font-size: 0.5em; 
+  text-align: left;
+}
+
+  
+}
