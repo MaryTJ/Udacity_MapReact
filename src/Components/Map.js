@@ -29,6 +29,11 @@ constructor(props) {
         }
     }
 
+    //Alert user when google map is not loaded
+    componentDidCatch(error, info) {
+        	alert("Error while loading Google Map")
+        }
+
 //function to set state for infowindows and call venuedetail function
 	getInfoWindow = (marker) => {
 		//commenting out getvenue detail to not exhaust the limit
