@@ -29,7 +29,8 @@ constructor(props) {
         }
     }
 
-    //Alert user when google map is not loaded
+    //Alert user when google map is not loaded. 
+    //https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753
     componentDidCatch(error, info) {
         	alert("Error while loading Google Map")
         }

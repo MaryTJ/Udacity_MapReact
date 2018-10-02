@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types'
-
-import escapeRegExp from 'escape-string-regexp'
 
 
 //Component to display list of the selected venues
