@@ -11,83 +11,39 @@ constructor(props) {
     super(props);
 
      this.state = {
-    selectedMarker:[],
-    position : null,
-    selectedMarkerDetail: null
+	    selectedMarker:[], //marker selected on click
+    	position : null, //position for infowindow
+    	selectedMarkerDetail: null //details of clicked marker
     
-}
-
-}
-
-	/*getMarkers = () => {
-		for(let i=0; i<this.props.coffee_shops.length; i++) {
-          let lat = this.props.coffee_shops[i].location.lat
-          let lng = this.props.coffee_shops[i].location.lng
-          let position = {lat, lng }
-          let title = this.props.coffee_shops[i].name
-
-          let marker = new google.maps.Markers({map:this.CoffeMap,position: position,title: title})
-          this.props.markers.push(marker)
-          console.log(this.state.markers)
-        }
 	}
-*/
-	
+
+}
+
+	//call info window when marker is clicked on the list
 	 componentDidUpdate(prevProps){
-	 	//console.log("update")
-	 	
-	 	//console.log(this.props.clicked_marker)
-        if (this.props.clicked_marker!=prevProps.clicked_marker){
+	
+	    if (this.props.clicked_marker!==prevProps.clicked_marker){
         	this.getInfoWindow(this.props.clicked_marker)
         	this.setState({clicked_marker:[]})
         
         }
     }
 
+//function to set state for infowindows and call venuedetail function
 	getInfoWindow = (marker) => {
 		//commenting out getvenue detail to not exhaust the limit
-		this.setState({selectedMarker:marker})//,() => this.props.getVenueDetail(this.state.selectedMarker.id))
+		this.setState({selectedMarker:marker},() => this.props.getVenueDetail(this.state.selectedMarker.id))
 		this.setState({position: {lat:marker.location.lat,lng:marker.location.lng}})
-		//console.log(this.state.selectedMarker.id)
-		//console.log(this.state.selectedMarker.id)
-		//this.props.getVenueDetail(this.state.selectedMarker.id)
-		//this.props.getVenueDetail(this.state.selectedMarker.id)
-		
+				
 	}
 
-	
-	animateMarker = (marker) => {
-		
-
-      	console.log("selectedMarker")
-      	console.log(this.state.selectedMarker.id )
-
-	}
-
-	
-	getSearchedMarkers = (smarker,markerid) => {
-		//console.log (smarker)
-		//console.log (markerid)
-		if (this.props.searched_markers.length > 0) {
-			if (smarker.id === markerid)
-				return true
-			else
-				return false
-		}
-		else 
-			return true
-	}
-
+	//function to make marker visible/invisible based on filtering
 	getMarkersVisibility = (markerid) => {
 		let marker_visible = false
 
-		//console.log (markerid)
-		
-		
-
 		if (this.props.searched_markers.length > 0) {
 			for (let i = 0; i < this.props.searched_markers.length; i++)
-			//this.props.searched_markers.filter(smarker => { if (smarker.id === markerid) {console.log(smarker.name)} else {return false}})
+			
 				if (this.props.searched_markers[i].id === markerid) 
 					{marker_visible = true;
 						break} 
@@ -100,34 +56,9 @@ constructor(props) {
 		
 	}
 
-	/*getAnimation = (marker_id) => {
-		//if (this.state.selectedMarker.id === marker_id? 4: 0
-		
-
-		if (this.props.clicked_marker.id === marker_id)
-			{this.getInfoWindow(marker_id)
-			//this.setState({selectedMarker:this.props.clicked_marker},
-			//console.log(this.props))
-			//this.setState({position: {lat:this.props.clicked_marker.location.lat, lng:this.props.clicked_marker.location.lng}},console.log(this.position))
-			return 4}
-		if (this.state.selectedMarker.id === marker_id)
-			{return 4}
-		else 
-			{return 0}
-	}
-*/
-
+//function to bounce marker when clicked
 getAnimation = (marker) => {
-		//if (this.state.selectedMarker.id === marker_id? 4: 0
-		
 
-		//if (this.props.clicked_marker.id === marker.id)
-		//	{window.google.maps.event.trigger(marker, 'click');
-			//this.getInfoWindow(marker)
-			//this.setState({selectedMarker:this.props.clicked_marker},
-			//console.log(this.props))
-			//this.setState({position: {lat:this.props.clicked_marker.location.lat, lng:this.props.clicked_marker.location.lng}},console.log(this.position))
-		//	return 4}
 		if (this.state.selectedMarker.id === marker.id)
 			{return 4}
 		else 
@@ -139,7 +70,7 @@ getAnimation = (marker) => {
 		const CoffeMap = withScriptjs(withGoogleMap((props) =>
 		
 		<GoogleMap
-			defaultZoom={16}
+			defaultZoom={15.45}
 			defaultCenter={{lat: 37.787938, lng: -122.407506}}
 		>
 		
@@ -169,8 +100,8 @@ getAnimation = (marker) => {
 					     	<h3>{this.state.selectedMarker.name}</h3>
 					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.address}</p>
 					     	<p style={{fontSize: `10px`}}>{this.state.selectedMarker.location.city}</p>
-					     	<p style={{fontSize: `10px`}}>Hours: {typeof(this.props.cshop_details.response)!= 'undefined'?this.props.cshop_details.response.venue.hours.status: 'No detail'}</p>
-					     	<p style={{fontSize: `10px`}}>Price: {typeof(this.props.cshop_details.response)!= 'undefined'?this.props.cshop_details.response.venue.price.currency: 'No detail'}</p>
+					     	<p style={{fontSize: `10px`}}>Hours: {typeof(this.props.cshop_details.response)!== 'undefined'?this.props.cshop_details.response.venue.hours.status: 'No detail'}</p>
+					     	<p style={{fontSize: `10px`}}>Price: {typeof(this.props.cshop_details.response)!== 'undefined'?this.props.cshop_details.response.venue.price.currency: 'No detail'}</p>
 
 					     	
 					     </div>

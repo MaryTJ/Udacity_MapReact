@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 90vh;
+  height: 100vh;
   background-color: #F6F6F6;
 }
 
@@ -38,13 +38,7 @@
   background-color: #F6F6F6;
   text-align: left;
 }
-/*
-.search-list {
-  width: 100%;
-  height: 100%;
-  border-color: black;
-  border-width: 100pt;
-}*/
+
 
 li:hover {
   cursor: pointer;
@@ -79,10 +73,7 @@ li:hover {
 }
 
 
-@media only screen and (min-width: 700px) and (max-width: 1000px) {
-  
-  
-}
+
 
 @media only screen and (min-width: 387px) and (max-width: 699px) {
   
@@ -103,7 +94,7 @@ li:hover {
   font-size: 0.5em; 
   text-align: left;
   }
-  
+
   }
 
 @media only screen and (max-width: 386px) {

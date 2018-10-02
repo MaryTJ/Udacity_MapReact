@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
 
 
-//Component to display list of the selected venuews
+//Component to display list of the selected venues
+//call handleSearch onchange of input text for filtering list
+//call setClickedMarker to set the state of clicked marker 
 class VenueSearch extends Component {
 
 	constructor(props) {
@@ -15,29 +17,14 @@ class VenueSearch extends Component {
      }
  }
 
-updateQuery = (query) => {
-		this.setState({ query:query.trim() })//.trim() })
-		if (this.state.query){
-			//this.props.searchShowBooks(query)
-		} 
-	}
-
-selectedMarkerInfo (marker) {
-	this.setState({ clicked_marker:marker },() => console.log(this.state.clicked_marker))
-	console.log(marker.name)
-	//this.props.setClickedMarker(marker)
-	console.log(this.props)
-}
-
-
-
 render () {
 	
 		
 	return (
 		<div>
 		<div className="search-list">
-              <input 
+              <input aria-label = "input text for searching coffe shops"
+              	tabIndex="0"
               	type="text" 
               	id="Coffee-search" 
               	placeholder="Search for coffee shops.."
@@ -50,7 +37,8 @@ render () {
          
          <ul className = 'venue-list'>
 		{this.props.searched_markers.map(marker =>
-			<li 
+			<li role = "list"
+			tabIndex = "0"
 			key = {marker.id}
 			onClick={(event) => {this.props.setClickedMarker(marker)}}
 			>
@@ -58,7 +46,7 @@ render () {
 			{marker.name}
 
 			</div>
-			
+
 			</li>
 			)
 			}
